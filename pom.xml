@@ -50,6 +50,7 @@
 			<scope>provided</scope>
 		</dependency>
 		<!--$abc$-->
+		<!--$123$-->
 	</dependencies>
 
 	<build>
