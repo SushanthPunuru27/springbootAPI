@@ -31,7 +31,7 @@ public class StudentService {
 	
 	public Student getStudent(int id) {
 		return studentRepository.findById(id)
-				.orElseThrow(() -> new StudentNotFoundException("Student not found with idddd: " +id));
+				.orElseThrow(() -> new StudentNotFoundException("Student not found with iddddd: " +id));
 	}
 	
 	public void createStudent(Student student) {
