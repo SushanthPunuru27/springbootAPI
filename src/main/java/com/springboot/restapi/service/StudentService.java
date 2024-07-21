@@ -40,7 +40,7 @@ public class StudentService {
 			errors.put("rollNo", "Roll number already exists: " + student.getRollNo());
 		}
 		if(student.getPercentage() < 23) {
-			errors.put("percentage", "Percentage should be at least 23. Please update it.");
+			errors.put("percentage", "Percentage should be at least 23.Please update it.");
 		}
 		if (!errors.isEmpty()) {
             throw new FieldValidationException(errors);
