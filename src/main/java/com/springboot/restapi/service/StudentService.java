@@ -1,6 +1,8 @@
 package com.springboot.restapi.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.springboot.restapi.entity.InvalidPercentageException;
 import com.springboot.restapi.entity.Student;
+import com.springboot.restapi.exception.FieldValidationException;
 import com.springboot.restapi.exception.PercentageInvalidException;
 import com.springboot.restapi.exception.RollNoAlreadyExistsException;
 import com.springboot.restapi.exception.StudentNotFoundException;
@@ -31,12 +35,16 @@ public class StudentService {
 	}
 	
 	public void createStudent(Student student) {
+		Map<String, String> errors = new HashMap<>();
 		if(studentRepository.existsByRollNo(student.getRollNo())) {
-			throw new RollNoAlreadyExistsException("Roll number already exists: " + student.getRollNo());
+			errors.put("rollNo", "Roll number already exists: " + student.getRollNo());
 		}
 		if(student.getPercentage() < 23) {
-			throw new PercentageInvalidException("Percentage should be at least 23 Please update it");
+			errors.put("percentage", "Percentage should be at least 23. Please update it.");
 		}
+		if (!errors.isEmpty()) {
+            throw new FieldValidationException(errors);
+        }
 		studentRepository.save(student);
 	}
 	
@@ -47,8 +55,11 @@ public class StudentService {
 			if (updateStudent.getName() != null) {
 	            student.setName(updateStudent.getName());
 	        }
-	        if (updateStudent.getPercentage() != 0) {
+	        if (updateStudent.getPercentage() >= 23) {
 	            student.setPercentage(updateStudent.getPercentage());
+	        }
+	        else {
+	        	throw new InvalidPercentageException("Percentage must be greater than 23.");
 	        }
 	        if (updateStudent.getBranch() != null) {
 	            student.setBranch(updateStudent.getBranch());
