@@ -49,8 +49,6 @@
 			<version>1.18.24</version><!--$NO-MVN-MAN-VER$-->
 			<scope>provided</scope>
 		</dependency>
-		<!--$abc$-->
-		<!--$123$-->
 	</dependencies>
 
 	<build>
