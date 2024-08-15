@@ -39,7 +39,7 @@ public class StudentController {
 		Student student = studentService.getStudent(id);
 		return new ResponseEntity<>(student, HttpStatus.OK);
 	}
-	
+	//This is post method
 	@PostMapping("/addStudent")
 	public ResponseEntity<Student> createStudent(@RequestBody Student student) {
 		studentService.createStudent(student);
