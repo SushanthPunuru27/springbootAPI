@@ -40,7 +40,7 @@ public class StudentController {
 		return new ResponseEntity<>(student, HttpStatus.OK);
 	}
 	
-	@PostMapping("/add")
+	@PostMapping("/addStudent")
 	public ResponseEntity<Student> createStudent(@RequestBody Student student) {
 		studentService.createStudent(student);
 		return new ResponseEntity<>(student, HttpStatus.CREATED);
