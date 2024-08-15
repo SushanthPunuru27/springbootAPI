@@ -39,7 +39,11 @@ public class StudentController {
 		Student student = studentService.getStudent(id);
 		return new ResponseEntity<>(student, HttpStatus.OK);
 	}
+<<<<<<< HEAD
 	//This is method hfihscihsc
+=======
+	//This is post method with add
+>>>>>>> feature-branch-name
 	@PostMapping("/addStudent")
 	public ResponseEntity<Student> createStudent(@RequestBody Student student) {
 		studentService.createStudent(student);
