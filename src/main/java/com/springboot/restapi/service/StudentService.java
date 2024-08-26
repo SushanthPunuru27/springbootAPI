@@ -71,7 +71,7 @@ public class StudentService {
 	
 	public Student deleteStudent(int id) {
 		Student student = studentRepository.findById(id)
-				.orElseThrow(() -> new StudentNotFoundException("Student not found with id:" +id));
+				.orElseThrow(() -> new StudentNotFoundException("Studentt not found with id:" +id));
 		studentRepository.delete(student);
 		return student;
 	}
